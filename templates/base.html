@@ -13,6 +13,19 @@
 
         {% include 'navbar.html' %}
 
+        <div class="container">
+            {% with mensagens = get_flashed_messages(with_categories=True) %}
+                {% if mensagens %}
+                    {% for categoria, mensagem in mensagens %}
+                        <div class="alert {{ categoria }}"> <!-- tem a ver com isso aqui https://getbootstrap.com/docs/5.0/components/alerts/-->
+                            {{ mensagem }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+
         {% block body %}
         {% endblock %}
 
